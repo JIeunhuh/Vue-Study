@@ -1,47 +1,43 @@
-<!-- v-model로 입력받는 id, pw값 데이터 속성에 연결해 나타내기 -->
 <template>
-  <form action="" v-on:submit.prevent="submitForm">
-    <div>
-      <label for=""></label>
-      <input type="text" v-model="username">
-    </div>
-    <div>
-      <label for=""></label>
-      <input type="password" v-model="password">
-    </div>
-
-    <button type="submit">Sign in !</button>
-  </form>
+  <div id="app">
+    <TodoHeader/>
+    <TodoInput/>
+    <TodoList/>
+    <TodoFooter/>
+  </div>
 </template>
 
 <script>
-import axios from 'axios';
+import TodoHeader from "./components/TodoHeader.vue";
+import TodoFooter from './components/TodoFooter.vue';
+import TodoList from './components/TodoList.vue';
+import TodoInput from './components/TodoInput.vue';
 
-export default {
-  data() {
-    return {
-      username: '',
-      password: ''
-    }
-  },
-  methods: {
-    submitForm() {
-      // vue에선 v-on 디렉티브에서 .prevent로 이벤트 제어를 할 수 있다 !
-      // page 재렌더링하지 않음
-      // e.preventDefault();
-      const data = {
-        username: this.username,
-        password: this.password
-      }
-      // axios.method 방식('api', 보낼 인자값),then(응답처리)
-      axios.post('https://jsonplaceholder.typicode.com/users/', data)
-        .then(response => {
-          console.log(response);
-        });
-      console.log('제출됨')
-    }
-  },
-}
+  export default {
+    components : {
+      TodoFooter,
+      TodoHeader,
+      TodoInput,
+      TodoList
+    }    
+  }
 </script>
 
-<style scoped></style>
+<style>
+body{
+  text-align: center;
+  background-color: aliceblue;
+}
+
+input{
+  border-style: groove;
+  width: 200px;
+}
+
+button{
+  border-style: groove;
+}
+.shadow{
+  box-shadow: 5px 10px 10px rgba(0,0,0,0.05);
+}
+</style>
