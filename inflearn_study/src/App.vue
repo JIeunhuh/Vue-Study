@@ -1,3 +1,4 @@
+<!-- vue - cli활용해서 app-> appheader로 props넘기고 emit으로 데이터 받아서 변경한 후 다시 props로 전달하기  -->
 <template>
     <app-header/>
     <div>
@@ -30,4 +31,4 @@ export default {
 </script>
 
 <style scoped>
-</style>
+</style>./AppHeader.vue
