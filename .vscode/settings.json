@@ -1,0 +1,8 @@
+// ESLint setting
+{
+    "eslint.workingDirectories": [
+
+        {"mode": "auto"}
+        
+        ],
+}

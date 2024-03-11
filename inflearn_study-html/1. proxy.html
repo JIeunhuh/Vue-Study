@@ -1,0 +1,43 @@
+<template>
+    <div id="app">
+      {{ message }}
+    </div>
+  </template>
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script>
+  import { ref } from 'vue';
+  // rendering : 화면에 무언가를 표시하는 행위를 '렌더링'이라고 함
+  Vue.createApp({
+    setup() {
+      const message = ref({
+        a: 10
+      }
+      );
+      // proxy : message 객체에 대한 동작을 모방하는 무언가를 만들겠다 ? 
+      // app의 내용이 바뀌면 message의 내용도 바뀐다
+      // 객체의 기본동작을 재정의할 수 있다
+      const proxy_app = new Proxy(message,{
+        get(){
+          console.log('값 접근')
+        },
+        // target : 객체, prop : 객체의 속성, value : 객체의 속성 값
+        set(target, prop, value){
+          target[prop] = value;
+          console.log('값 갱신');
+          render(value);
+        }
+      })
+  
+      const render = (sth)=> {
+        const div = document.querySelector('#app');
+        div.innerHTML = sth;
+  
+        render('hello vue !'
+      }
+      return {
+        message, proxy_app
+      };
+    },
+  }).mount('#app');
+  </script>

@@ -1,0 +1,27 @@
+<div id="app">
+    <p v-if="login">로그인 되었습니다.</p> <!-- login==true일때-->
+    <p v-else>로그인 하세요.</p> <!-- login==false일때-->
+    <button v-on:click="loginBtn">로그인</button>
+    
+    <br>
+    
+    <p v-show="login">로그인 되었습니다.</p> <!-- login==true일때-->
+    <button v-on:click="loginBtn">로그인</button>
+</div>
+<!-- data binding : 데이터의 변화에 따라 화면에 표시되는 값도 달라짐 ?  -->
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+    Vue.createApp({
+        data(){
+            return{
+                login : false
+            }
+        },
+        methods : {
+            loginBtn() {
+                this.login = !this.login; // 기존 값의 반대로 토글 
+                // this.login = this.login; 항상 자기자신으로 할당하면 당연히 값이 안바뀜 ; 
+            }
+        }
+    }).mount('#app');
+</script>
